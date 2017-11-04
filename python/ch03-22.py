@@ -7,7 +7,7 @@ def main():
     parser.add_argument('infile', type=argparse.FileType('r'))
     args = parser.parse_args()
 
-    regex = re.compile('\[\[Category:(?P<category>[^|]+)(\|.*)?\]\]')
+    regex = re.compile(r'\[\[Category:(?P<category>[^|]+)(\|.*)?\]\]')
     for line in args.infile:
         match = regex.search(line)
         if match:
