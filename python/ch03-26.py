@@ -2,6 +2,10 @@ import argparse
 import re
 
 
+def remove_markup(s):
+    return re.sub(r"('{2,3})|('{5})", '', s)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('infile', type=argparse.FileType('r'))
@@ -16,8 +20,7 @@ def main():
         content = match.group(1)
         regex2 = re.compile(r'^\|(.+?) = (.+?)(?:(?=\n\|)|(?=\n$))',
                             flags=(re.MULTILINE | re.DOTALL))
-        regex3 = re.compile(r"('{2,3})|('{5})")
-        result = {m.group(1): regex3.sub('', m.group(2))
+        result = {m.group(1): remove_markup(m.group(2))
                   for m in regex2.finditer(content)}
         print(result)
 
