@@ -22,7 +22,9 @@ def main():
                             flags=(re.MULTILINE | re.DOTALL))
         result = {m.group(1): remove_markup(m.group(2))
                   for m in regex2.finditer(content)}
-        print(result)
+
+        for k, v in result.items():
+            print('{0}\t{1}'.format(k, v))
 
 
 if __name__ == '__main__':
