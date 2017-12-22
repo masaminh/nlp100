@@ -15,7 +15,7 @@ def get_article(file, name):
 
 def get_categorylines(article):
     regex = re.compile(r'\[\[Category:.*\]\]')
-    return [l for l in article.splitlines() if regex.search(l)]
+    return (l for l in article.splitlines() if regex.search(l))
 
 
 def main():
