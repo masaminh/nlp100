@@ -15,8 +15,8 @@ def get_article(file, name):
 
 def get_sections(article):
     regex = re.compile(r'(={2,6})\s*(.+?)\s*\1')
-    return [(m.group(2), len(m.group(1)) - 1) for m
-            in [regex.search(l) for l in article.splitlines()] if m]
+    return ((m.group(2), len(m.group(1)) - 1) for m
+            in (regex.search(l) for l in article.splitlines()) if m)
 
 
 def main():

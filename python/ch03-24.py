@@ -15,8 +15,8 @@ def get_article(file, name):
 
 def get_filereferences(article):
     regex = re.compile(r'ファイル:(.+?)\|')
-    return [m.group(1) for m
-            in [regex.search(l) for l in article.splitlines()] if m]
+    return (m.group(1) for m
+            in (regex.search(l) for l in article.splitlines()) if m)
 
 
 def main():
