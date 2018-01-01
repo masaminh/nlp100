@@ -23,10 +23,11 @@ def ngram(s, n):
 
 
 def get_words(morphemes):
-    ngrams = chain.from_iterable(ngram(x, 3) for x in morphemes)
+    ngrams = (y for y in chain.from_iterable(ngram(x, 3) for x in morphemes)
+              if len(y) == 3)
     words = [x[0]['surface'] + x[1]['surface'] + x[2]['surface']
              for x in ngrams
-             if len(x) == 3 and x[0]['pos'] == '名詞' and x[1]['surface'] == 'の'
+             if x[0]['pos'] == '名詞' and x[1]['surface'] == 'の'
              and x[2]['pos'] == '名詞']
     return words
 
