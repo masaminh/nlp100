@@ -1,5 +1,4 @@
 import argparse
-from itertools import chain
 
 
 def read_morphemes(lines):
@@ -16,10 +15,6 @@ def read_morphemes(lines):
             t2 = t1[1].split(',')
             m = {'surface': t1[0], 'base': t2[6], 'pos': t2[0], 'pos1': t2[1]}
             morphemes.append(m)
-
-
-def ngram(s, n):
-    return [s[i:i + n] for i in range(len(s))]
 
 
 def get_words(morphemes):
