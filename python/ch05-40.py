@@ -8,10 +8,10 @@ def main():
     args = parser.parse_args()
 
     with open(args.infile, mode='r') as f:
-        sentences = read_sentences(f)
-        for m in itertools.chain.from_iterable(
-                itertools.islice(sentences, 2, 3)):
-            print(m)
+        for line_num, s in enumerate(read_sentences(f)):
+            if line_num == 2:
+                print('\n'.join([str(m) for m in s]))
+                break
 
 
 def read_sentences(lines):
