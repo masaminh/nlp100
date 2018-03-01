@@ -11,9 +11,7 @@ def main():
         for line_num, sentence in enumerate(read_sentences(f)):
             if line_num == 7:
                 for i, c in enumerate(sentence):
-                    print(
-                        f'{i}\t{"".join([m.surface for m in c.morphs])}' +
-                        f'\tdst:{c.dst}')
+                    print(f'{i}\t{c.get_surface()}\tdst:{c.dst}')
                 break
 
 
@@ -66,6 +64,9 @@ class Chunk:
     def __repr__(self):
         return (f'{self.dst}\n' + str(self.srcs) + '\n' +
                 '\n'.join([str(m) for m in self.morphs]) + '\n---\n')
+
+    def get_surface(self):
+        return ''.join([m.surface for m in self.morphs])
 
 
 if __name__ == '__main__':
