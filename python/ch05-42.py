@@ -1,5 +1,4 @@
 import argparse
-import itertools
 
 
 def main():
